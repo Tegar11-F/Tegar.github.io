@@ -144,18 +144,18 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-8 mb-3">
-            <form>
+            <form name="'Contact-From'">
               <div class="form-group">
                 <label for="name">Nama Lengkap</label>
-                <input type="text" class="form-control" id="name" aria-describedby="name">
+                <input type="text" class="form-control" id="name" aria-describedby="name" name="nama">
               </div>
               <div class="form-group mb-3">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="email">
+                <input type="email" class="form-control" id="email" aria-describedby="email" name="email">
               </div>
               <div class="form-group mb-3">
                 <label for="">Pesan</label>
-                <textarea class="form-control" id="pesan" rows="3"></textarea>
+                <textarea class="form-control" id="pesan" rows="3" name="pesan"></textarea>
               </div>
               <button type="submit" class="btn btn-primary ">Kirim</button>
             </form>
@@ -174,5 +174,16 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzB0JHlevUV2Dye5l5ASVw-cwoc2lAnK8hUGMM7ok9IWmdLtISnNnaM1KhlZbKGMfSh/exec'
+      const form = document.forms['Contact-From']
+    
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => console.log('Success!', response))
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
   </body>
 </html>
